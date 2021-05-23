@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Injected Service using await";
+    const string DIRTY_STRING = "DIRTY_STRING";
+}
+
+@using HtmlHelperReplacement.Services
+
+@inject ICleaningService cleaningService
+
+    <h2>Injected Cleaning Service called async and using await</h2>
+
+    <div class="container">
+
+        @for (var i = 0; i < 5000; i++)
+        {
+            <div class="row">
+                <div class="col">@@await cleaningService.GetCleanStringAsync(DIRTY_STRING)</div>
+                <div class="col">@await cleaningService.GetCleanStringAsync(DIRTY_STRING)</div>
+                <div class="col">&nbsp;</div>
+            </div>
+        }
+    </div>

@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "HTML Helper with Service Locator";
+    const string DIRTY_STRING = "DIRTY_STRING";
+}
+
+@using HtmlHelperReplacement.Services
+@using HtmlHelperReplacement
+@inject ICleaningService cleaningService
+
+    <h2>HTML Helper with Service Locator</h2>
+
+    <div class="container">
+        @for (var i = 0; i < 5000; i++)
+        {
+            <div class="row">
+                <div class="col">@@Html.GetCleanString(DIRTY_STRING)</div>
+                <div class="col">@Html.GetCleanString(DIRTY_STRING)</div>
+                <div class="col">&nbsp;</div>
+            </div>
+        }
+    </div>

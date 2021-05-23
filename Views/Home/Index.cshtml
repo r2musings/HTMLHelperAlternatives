@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    const string DIRTY_STRING = "DIRTY_STRING";
+}
+
+@using HtmlHelperReplacement.Services
+@using HtmlHelperReplacement
+@inject ICleaningService cleaningService
+
+    <div class="container">
+        <div class="row">
+            <div class="col">HTML Helper with Service Locator</div>
+        </div>
+        <div class="row">
+            <div class="col">@@Html.GetCleanString(DIRTY_STRING)</div>
+            <div class="col">@Html.GetCleanString(DIRTY_STRING)</div>
+            <div class="col">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col">Injected Cleaning Service called synchronously</div>
+        </div>
+        <div class="row">
+            <div class="col">@@cleaningService.GetCleanString(DIRTY_STRING)</div>
+            <div class="col">@cleaningService.GetCleanString(DIRTY_STRING)</div>
+            <div class="col">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col">Injected Cleaning Service called async and using Task.Result</div>
+        </div>
+        <div class="row">
+            <div class="col">@@cleaningService.GetCleanStringAsync(DIRTY_STRING).Result</div>
+            <div class="col">@cleaningService.GetCleanStringAsync(DIRTY_STRING).Result</div>
+            <div class="col">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col">Injected Cleaning Service called async and not using await</div>
+        </div>
+        <div class="row">
+            <div class="col">@@cleaningService.GetCleanStringAsync(DIRTY_STRING)</div>
+            <div class="col">@cleaningService.GetCleanStringAsync(DIRTY_STRING)</div>
+            <div class="col">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col">Injected Cleaning Service called async and using await</div>
+        </div>
+        <div class="row">
+            <div class="col">@@await cleaningService.GetCleanStringAsync("DIRTY_STRING")</div>
+            <div class="col">@await cleaningService.GetCleanStringAsync("DIRTY_STRING")</div>
+            <div class="col">&nbsp;</div>
+        </div>
+    </div>
