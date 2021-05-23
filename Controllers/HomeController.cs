@@ -19,26 +19,6 @@ namespace HtmlHelperReplacement.Controllers
             return View();
         }
 
-        public IActionResult HTMLHelper()
-        {
-            return View();
-        }
-
-        public IActionResult InjectedAsyncUsingTaskResult()
-        {
-            return View();
-        }
-
-        public IActionResult InjectedAsyncWithAwait()
-        {
-            return View();
-        }
-
-        public IActionResult InjectedSync()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

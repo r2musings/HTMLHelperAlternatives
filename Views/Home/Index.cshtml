@@ -7,45 +7,50 @@
 @using HtmlHelperReplacement
 @inject ICleaningService cleaningService
 
-    <div class="container">
-        <div class="row">
-            <div class="col">HTML Helper with Service Locator</div>
+<div class="container">
+    <row>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@@Html.GetCleanString(DIRTY_STRING)</h5>
+                <h6>Result: @Html.GetCleanString(DIRTY_STRING)</h6>
+                <p class="card-text">HTML Helper with Service Locator</p>
+            </div>
         </div>
-        <div class="row">
-            <div class="col">@@Html.GetCleanString(DIRTY_STRING)</div>
-            <div class="col">@Html.GetCleanString(DIRTY_STRING)</div>
-            <div class="col">&nbsp;</div>
+    </row>
+    <row>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@@cleaningService.GetCleanString(DIRTY_STRING)</h5>
+                <h6>Result: @cleaningService.GetCleanString(DIRTY_STRING)</h6>
+                <p class="card-text">Injected Cleaning Service called synchronously</p>
+            </div>
         </div>
-        <div class="row">
-            <div class="col">Injected Cleaning Service called synchronously</div>
+    </row>
+    <row>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@@cleaningService.GetCleanStringAsync(DIRTY_STRING).Result</h5>
+                <h6>Result: @cleaningService.GetCleanStringAsync(DIRTY_STRING).Result</h6>
+                <p class="card-text">Injected Cleaning Service called async and using Task.Result</p>
+            </div>
         </div>
-        <div class="row">
-            <div class="col">@@cleaningService.GetCleanString(DIRTY_STRING)</div>
-            <div class="col">@cleaningService.GetCleanString(DIRTY_STRING)</div>
-            <div class="col">&nbsp;</div>
+    </row>
+    <row>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@@cleaningService.GetCleanStringAsync(DIRTY_STRING)</h5>
+                <h6>Result: @cleaningService.GetCleanStringAsync(DIRTY_STRING)</h6>
+                <p class="card-text">Injected Cleaning Service called async and not using await</p>
+            </div>
         </div>
-        <div class="row">
-            <div class="col">Injected Cleaning Service called async and using Task.Result</div>
+    </row>
+    <row>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@@await cleaningService.GetCleanStringAsync("DIRTY_STRING")</h5>
+                <h6>Result: @await cleaningService.GetCleanStringAsync("DIRTY_STRING")</h6>
+                <p class="card-text">Injected Cleaning Service called async and using await</p>
+            </div>
         </div>
-        <div class="row">
-            <div class="col">@@cleaningService.GetCleanStringAsync(DIRTY_STRING).Result</div>
-            <div class="col">@cleaningService.GetCleanStringAsync(DIRTY_STRING).Result</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col">Injected Cleaning Service called async and not using await</div>
-        </div>
-        <div class="row">
-            <div class="col">@@cleaningService.GetCleanStringAsync(DIRTY_STRING)</div>
-            <div class="col">@cleaningService.GetCleanStringAsync(DIRTY_STRING)</div>
-            <div class="col">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col">Injected Cleaning Service called async and using await</div>
-        </div>
-        <div class="row">
-            <div class="col">@@await cleaningService.GetCleanStringAsync("DIRTY_STRING")</div>
-            <div class="col">@await cleaningService.GetCleanStringAsync("DIRTY_STRING")</div>
-            <div class="col">&nbsp;</div>
-        </div>
-    </div>
+    </row>
+</div>
