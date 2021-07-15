@@ -77,3 +77,11 @@ body {
     .card h6 {
         color: #999;
     }
+
+.card-body.bad {
+    border: 5px solid red;
+}
+
+.card-body.good {
+    border: 5px solid green;
+}
