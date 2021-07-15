@@ -1,51 +1,64 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
-    const string DIRTY_STRING = "DIRTY_STRING";
+    ViewData["Title"] = "Replacement of HTML Helpers with Dependencies in ASP.NET Core";
+    const string DIRTY_STRING = "!# DiRtY StRING --'*(";
 }
 
 @using HtmlHelperReplacement.Services
 @using HtmlHelperReplacement
 @inject ICleaningService cleaningService
 
-<div class="container">
-    <row>
-        <div class="card">
-            <div class="card-body good">
-                <h5 class="card-title">@@await cleaningService.GetCleanStringAsync("DIRTY_STRING")</h5>
-                <h6>Result: @await cleaningService.GetCleanStringAsync("DIRTY_STRING")</h6>
-                <p class="card-text">Injected Cleaning Service called async and correctly using await</p>
-            </div>
+
+    <div class="container">
+        <h2>Replacement of HTML Helpers with Dependencies in ASP.NET Core</h2>
+        <div>
+            This project demonstrates the usage of an HTML Helper with a Service Locator used to handle the dependencies needed (as was often implemented in
+            ASP.NET), as well as, a better way to handle these dependencies now available in ASP.NET Core.  For more detail, see this blog post:
+            <a href="">Replacement of HTML Helpers with Dependencies in ASP.NET Core</a>
         </div>
-    </row>
-    <row>
-        <div class="card">
-            <div class="card-body bad">
-                <h5 class="card-title">@@cleaningService.GetCleanStringAsync(DIRTY_STRING)</h5>
-                <h6>Result: @cleaningService.GetCleanStringAsync(DIRTY_STRING)</h6>
-                <p class="card-text">Injected Cleaning Service called async and forgetting to use await in the View</p>
+        <br />
+        <row>
+            <div class="card">
+                <div class="card-body good">
+                    <h5 class="card-title">@@await cleaningService.GetCleanStringAsync(DIRTY_STRING)</h5>
+                    <p class="card-text">Injected Cleaning Service called async and correctly using await</p>
+                    <h6>Source: @DIRTY_STRING</h6>
+                    <h6>Result: @await cleaningService.GetCleanStringAsync(DIRTY_STRING)</h6>
+                </div>
             </div>
-        </div>
-    </row>
-    <row>
-        <div class="card">
-            <div class="card-body bad">
-                <h5 class="card-title">
-                    @@Html.GetCleanString(DIRTY_STRING)
-                </h5>
-                <h6>Result: @Html.GetCleanString(DIRTY_STRING)</h6>
-                <p class="card-text">HTML Helper with Service Locator</p>
+        </row>
+        <row>
+            <div class="card">
+                <div class="card-body bad">
+                    <h5 class="card-title">@@cleaningService.GetCleanStringAsync(DIRTY_STRING)</h5>
+                    <p class="card-text">Injected Cleaning Service called async and forgetting to use await in the View</p>
+                    <h6>Source: @DIRTY_STRING</h6>
+                    <h6>Result: @cleaningService.GetCleanStringAsync(DIRTY_STRING)</h6>
+                </div>
             </div>
-        </div>
-    </row>
-    <row>
-        <div class="card">
-            <div class="card-body bad">
-                <h5 class="card-title">@@cleaningService.GetCleanString(DIRTY_STRING)</h5>
-                <h6>Result: @cleaningService.GetCleanString(DIRTY_STRING)</h6>
-                <p class="card-text">Injected Cleaning Service called synchronously</p>
+        </row>
+        <row>
+            <div class="card">
+                <div class="card-body bad">
+                    <h5 class="card-title">
+                        @@Html.GetCleanString(DIRTY_STRING)
+                    </h5>
+                    <p class="card-text">HTML Helper with Service Locator - unknown dependency on CleaningService.</p>
+                    <h6>Source: @DIRTY_STRING</h6>
+                    <h6>Result: @Html.GetCleanString(DIRTY_STRING)</h6>
+
+                </div>
             </div>
-        </div>
-    </row>
-    
-    
-</div>
+        </row>
+        <row>
+            <div class="card">
+                <div class="card-body bad">
+                    <h5 class="card-title">@@cleaningService.GetCleanString(DIRTY_STRING)</h5>
+                    <p class="card-text">Injected Cleaning Service called synchronously</p>
+                    <h6>Source: @DIRTY_STRING</h6>
+                    <h6>Result: @cleaningService.GetCleanString(DIRTY_STRING)</h6>
+                </div>
+            </div>
+        </row>
+
+
+    </div>

@@ -79,9 +79,9 @@ body {
     }
 
 .card-body.bad {
-    border: 5px solid red;
+    border-left: 8px solid red;
 }
 
 .card-body.good {
-    border: 5px solid green;
+    border-left: 8px solid green;
 }

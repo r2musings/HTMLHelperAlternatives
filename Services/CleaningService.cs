@@ -1,4 +1,4 @@
-﻿using System.Threading;
+﻿using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace HtmlHelperReplacement.Services
@@ -7,16 +7,12 @@ namespace HtmlHelperReplacement.Services
     {
         public string GetCleanString(string source)
         {
-            Thread.Sleep(1);
-            
-            return $"{source}_CLEANED";
+            return Regex.Replace(source, "[^A-Za-z]", "").ToLower().Replace("dirty", "clean");
         }
 
         public async Task<string> GetCleanStringAsync(string source)
         {
-            Thread.Sleep(1);
-            
-            return await Task.FromResult($"{source}_CLEANED");
+            return await Task.FromResult(GetCleanString(source));
         }
     }
 }
